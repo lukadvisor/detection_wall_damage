@@ -1,7 +1,8 @@
-# falling-harness
+# Wall Cracks
 
 
-This project includes all the necessary files required for Performing testing for presense of safety harness . You can run the project locally yourself or acess the streamlit dashboard hosted at streamlit.cloud
+This project includes all the necessary files required for Performing testing for presense of Wall cracks on buildig facade . You can run the project locally yourself or acess the streamlit dashboard hosted at streamlit.cloud
+
 # How to use it
 Make sure you can conda or other virtual environment installed
 ### Setup
