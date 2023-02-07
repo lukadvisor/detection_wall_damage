@@ -44,7 +44,6 @@ def main():
     print("Model loaded successfully")
     if uploaded_video is not None: # run only when user uploads video
         vid = uploaded_video.name
-
         with open(vid, mode='wb') as f:
             f.write(uploaded_video.read()) # save video to disk
 
@@ -82,23 +81,34 @@ def main():
                 cur_frame += 1
                 
     if uploaded_file is not None: 
+        print("image is uploaded")
         # Convert the file to an opencv image.
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         original =  cv2.imdecode(file_bytes, 1)
         opencv_image = cv2.imdecode(file_bytes, 1)
-
+        # st.image(opencv_image)
+        
         # Extracted frame 
         app.load_img(opencv_image)
         app.load_cv2mat()
         app.inference()
         frame = app.show()
+        st.image(frame)
         
 
-        
         # pre-processing for displaying
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        print('frame: {}'.format(cur_frame)) 
+        
         pil_img = Image.fromarray(frame) # convert opencv frame (with type()==numpy) into PIL Image
         st.image(pil_img)
         
+        btn = st.download_button(
+        label="Download image",
+        data=pil_img,
+        file_name="Detection.png",
+        mime="image/png"
+        )
+
 if __name__ == '__main__':
     main()
